@@ -14,7 +14,10 @@ const App = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello This is React Native </Text>
+        <Text style={{fontFamily: 'NunitoBold', fontSize: 25}}>
+          Hello This is React Native
+        </Text>
+        <Text style={{fontSize: 25}}>This is Test</Text>
       </View>
     </SafeAreaView>
   );
