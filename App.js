@@ -14,7 +14,7 @@ const App = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello This is React Native</Text>
+        <Text>Hello This is React Native </Text>
       </View>
     </SafeAreaView>
   );
