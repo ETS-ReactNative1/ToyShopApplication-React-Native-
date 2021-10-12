@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   return (
     <View>
-      <Text> This is HomeScreen </Text>
+      <Pressable onPress={() => navigation.navigate('Pro')}>
+        <Text> This is HomeScreen YO </Text>
+      </Pressable>
     </View>
   );
 }
