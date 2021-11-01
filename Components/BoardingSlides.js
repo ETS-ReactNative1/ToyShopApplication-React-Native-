@@ -1,33 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions, Pressable} from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 const {height, width} = Dimensions.get('window');
 
 const size = width * 0.5;
 
 export default function BoardingSlides({title, index, translateX}) {
-  const scale = useSharedValue(0.01);
-
-  // const AnimatedScale = useAnimatedStyle(() => {
-  //   return {
-  //     transform: [{scale: scale.value}],
-  //   };
-  // });
-
-  // const startAnimation = () => {
-  //   scale.value = withTiming(0, {
-  //     duration: 500,
-  //   });
-  // };
-  // useEffect(() => {
-  //   startAnimation();
-  // }, []);
-
   return (
     <View
       style={[
