@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Animated, {
-  event,
-  useAnimatedScrollHandler,
+  useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+
 import BoardingSlides from '../Components/BoardingSlides';
 
 const {height, width} = Dimensions.get('window');
+
+const w = Dimensions.get('screen').width;
 
 const size = width * 0.5;
 
@@ -15,12 +17,21 @@ const size = width * 0.5;
 const Words = ['Hey', 'There', "I'am", 'developer'];
 
 export default function Onboardingscreen({navigation}) {
-  const translateX = useSharedValue(0);
+  //State for Scrollvisible
+  const [isScrollVisible, setScrollVisible] = useState(false);
 
-  const Scrollhandler = useAnimatedScrollHandler(event => {
-    //Store the Content offset Value
-    translateX.value = event.contentOffset.x;
+  const ScrollX = useSharedValue(0);
+
+  //Style Reanimated
+  const AnimatedStyleScroll = useAnimatedStyle(() => {
+    return {
+      transform: [{translateX: ScrollX.value}],
+    };
   });
+
+  //Scale Animation
+
+  //useEffect
 
   return (
     <View style={styles.wrapper}>
@@ -28,19 +39,18 @@ export default function Onboardingscreen({navigation}) {
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
         snapToAlignment
-        style={{flex: 1, backgroundColor: 'red'}}
+        style={{flex: 1}}
         pagingEnabled
         horizontal>
-        <View style={styles.page}>
-          <View style={styles.square} />
-        </View>
-
-        <View style={styles.page}>
-          <View style={styles.square} />
-        </View>
-        <View style={styles.page}>
-          <View style={styles.square} />
-        </View>
+        {Words.map((title, index) => {
+          return (
+            <BoardingSlides
+              key={index.toString()}
+              title={title}
+              index={index}
+            />
+          );
+        })}
       </Animated.ScrollView>
     </View>
   );
@@ -52,17 +62,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-  },
-  page: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width,
-  },
-  square: {
-    height: size,
-    width: size,
-    backgroundColor: 'rgba(0,0,256,0.9)',
-    borderRadius: 100,
   },
 });
 
