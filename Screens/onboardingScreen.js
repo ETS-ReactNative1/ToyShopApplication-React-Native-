@@ -1,42 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Animated, {
-  useAnimatedStyle,
+  useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
 
 import BoardingSlides from '../Components/BoardingSlides';
 
-const {height, width} = Dimensions.get('window');
-
-const w = Dimensions.get('screen').width;
-
-const size = width * 0.5;
-
 //Array for the Data
 const Words = ['Hey', 'There', "I'am", 'developer'];
 
 export default function Onboardingscreen({navigation}) {
-  //State for Scrollvisible
-  const [isScrollVisible, setScrollVisible] = useState(false);
+  //Storing the TranslateX Value in the Shared Value Bcz we need this valur for Animations
 
-  const ScrollX = useSharedValue(0);
+  const translateX = useSharedValue(0);
 
-  //Style Reanimated
-  const AnimatedStyleScroll = useAnimatedStyle(() => {
-    return {
-      transform: [{translateX: ScrollX.value}],
-    };
+  //Scroll handler to get the Scrolling event on Horizontal axis
+  const ScrollHandler = useAnimatedScrollHandler(event => {
+    translateX.value = event.contentOffset.x;
   });
-
-  //Scale Animation
-
-  //useEffect
 
   return (
     <View style={styles.wrapper}>
       <Animated.ScrollView
         scrollEventThrottle={16}
+        onScroll={ScrollHandler}
         showsHorizontalScrollIndicator={false}
         snapToAlignment
         style={{flex: 1}}
@@ -48,6 +36,7 @@ export default function Onboardingscreen({navigation}) {
               key={index.toString()}
               title={title}
               index={index}
+              translateX={translateX}
             />
           );
         })}
@@ -64,17 +53,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-//PRev
-
-// {Words.map((title, index) => {
-//   return (
-//     <BoardingSlides
-//       key={index.toString()}
-//       title={title}
-//       index={index}
-//       translateX={translateX}
-//     />
-//   );
-// })
-//}

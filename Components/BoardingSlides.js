@@ -1,26 +1,67 @@
-import {transform} from '@babel/core';
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions, Pressable} from 'react-native';
 import Animated, {
-  runOnJS,
+  Extrapolate,
+  interpolate,
   useAnimatedStyle,
-  useSharedValue,
-  withTiming,
 } from 'react-native-reanimated';
 
 const {height, width} = Dimensions.get('window');
 
-const size = width * 0.5;
+const size = width * 0.8;
 
 export default function BoardingSlides({title, index, translateX}) {
+  //animated Style
+  const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
+
+  const aStyle = useAnimatedStyle(() => {
+    //interpolate the Scale
+
+    const scale = interpolate(
+      translateX.value,
+      inputRange,
+      [0, 1, 0],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      transform: [{scale: scale}],
+    };
+  });
+
+  //Text Animations
+  const aTextstyle = useAnimatedStyle(() => {
+    const translateY = interpolate(
+      translateX.value,
+      inputRange,
+      [height / 2, 0, -height / 2],
+      Extrapolate.CLAMP,
+    );
+
+    const opacity = interpolate(
+      translateX.value,
+      inputRange,
+      [-2, 1, -2],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      opacity,
+      transform: [{translateY}],
+    };
+  });
+
   return (
-    <View
+    <Animated.View
       style={[
         styles.container,
-        {backgroundColor: `rgba(0,0,256,0.${index + 2})`},
+        {backgroundColor: `rgba(255,99,71,0.${index + 3})`},
       ]}>
-      <Animated.View style={[styles.square]}></Animated.View>
-    </View>
+      <Animated.View style={[styles.square, aStyle]} />
+      <Animated.View style={[styles.textcontainer, aTextstyle]}>
+        <Text style={[styles.txt]}>{title}</Text>
+      </Animated.View>
+    </Animated.View>
   );
 }
 
@@ -34,7 +75,15 @@ const styles = StyleSheet.create({
   square: {
     height: size,
     width: size,
-    backgroundColor: 'rgba(0,0,256,0.9)',
-    borderRadius: 100,
+    backgroundColor: 'orangered',
+    borderRadius: 200,
+  },
+  textcontainer: {
+    position: 'absolute',
+  },
+  txt: {
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    fontSize: 70,
   },
 });
