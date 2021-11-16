@@ -1,18 +1,18 @@
 export const PageData = [
   {
-    title: 'YOYO',
+    title: 'Original Eco-Toys',
     source: require('../assets/Images/img15.png'),
   },
   {
-    title: 'YOYO',
+    title: 'Amazing Toys Design',
     source: require('../assets/Images/img8.png'),
   },
   {
-    title: 'YOYO',
+    title: 'Favorite Impressions',
     source: require('../assets/Images/img5.png'),
   },
   {
-    title: 'YOYO',
+    title: 'Magical Characters',
     source: require('../assets/Images/img6.png'),
   },
 ];

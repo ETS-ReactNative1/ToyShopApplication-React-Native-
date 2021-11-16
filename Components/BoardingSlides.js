@@ -17,7 +17,7 @@ const {height, width} = Dimensions.get('window');
 
 const size = width * 0.9;
 
-export default function BoardingSlides({title, index, translateX, Page}) {
+export default function BoardingSlides({index, translateX, Page}) {
   console.log(Page);
   //animated Style
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
@@ -38,7 +38,7 @@ export default function BoardingSlides({title, index, translateX, Page}) {
   });
 
   //Text Animations
-  const aTextstyle = useAnimatedStyle(() => {
+  const aImagestyle = useAnimatedStyle(() => {
     const translateY = interpolate(
       translateX.value,
       inputRange,
@@ -59,17 +59,45 @@ export default function BoardingSlides({title, index, translateX, Page}) {
     };
   });
 
+  //Animated Text
+
+  const aTexystyle = useAnimatedStyle(() => {
+    const translateY = interpolate(translateX.value, inputRange, [
+      height / 2,
+      0,
+      -height / 2,
+    ]);
+
+    const opacity = interpolate(
+      translateX.value,
+      inputRange,
+      [-5, 1, -5],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      opacity,
+      transform: [{translateY}],
+    };
+  });
+
   return (
     <Animated.View
       style={[
         styles.container,
-        {backgroundColor: `rgba(255,99,71,0.${index + 3})`},
+        {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
       ]}>
-      {/* <Text style={[styles.txt]}>{title}</Text> */}
-      <Animated.View style={[styles.square, aStyle]} />
-      <Animated.View style={[styles.textcontainer, aTextstyle]}>
+      <Animated.View style={[styles.headingwrapper, aTexystyle]}>
+        <Text style={[styles.txt]}>{Page.title}</Text>
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.square,
+          {backgroundColor: `rgba(242,97,87,0.${index + 5})`},
+          aStyle,
+        ]}>
         <Animated.Image
-          style={styles.img}
+          style={[styles.img, aImagestyle]}
           source={Page.source}
           resizeMode="cover"
         />
@@ -88,19 +116,25 @@ const styles = StyleSheet.create({
   square: {
     height: size,
     width: size,
-    backgroundColor: 'orangered',
+    backgroundColor: '#1F363D',
     borderRadius: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  textcontainer: {
-    position: 'absolute',
-  },
+
   txt: {
     fontWeight: '700',
     textTransform: 'uppercase',
-    fontSize: 70,
+    fontSize: 30,
   },
   img: {
     height: 250,
     width: 250,
+  },
+  headingwrapper: {
+    position: 'absolute',
+    top: 0,
+    marginTop: 80,
+    padding: 15,
   },
 });
