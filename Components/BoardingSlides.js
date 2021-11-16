@@ -13,6 +13,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
+import {fonststyle} from '../Config/fontstyles';
 const {height, width} = Dimensions.get('window');
 
 const size = width * 0.9;
@@ -123,9 +124,7 @@ const styles = StyleSheet.create({
   },
 
   txt: {
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    fontSize: 30,
+    ...fonststyle.heading2,
   },
   img: {
     height: 250,
