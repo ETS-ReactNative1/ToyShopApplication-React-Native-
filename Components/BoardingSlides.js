@@ -1,5 +1,12 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Dimensions, Pressable} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Pressable,
+  Image,
+} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -8,9 +15,10 @@ import Animated, {
 
 const {height, width} = Dimensions.get('window');
 
-const size = width * 0.8;
+const size = width * 0.9;
 
-export default function BoardingSlides({title, index, translateX}) {
+export default function BoardingSlides({title, index, translateX, Page}) {
+  console.log(Page);
   //animated Style
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
@@ -57,9 +65,14 @@ export default function BoardingSlides({title, index, translateX}) {
         styles.container,
         {backgroundColor: `rgba(255,99,71,0.${index + 3})`},
       ]}>
+      {/* <Text style={[styles.txt]}>{title}</Text> */}
       <Animated.View style={[styles.square, aStyle]} />
       <Animated.View style={[styles.textcontainer, aTextstyle]}>
-        <Text style={[styles.txt]}>{title}</Text>
+        <Animated.Image
+          style={styles.img}
+          source={Page.source}
+          resizeMode="cover"
+        />
       </Animated.View>
     </Animated.View>
   );
@@ -85,5 +98,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textTransform: 'uppercase',
     fontSize: 70,
+  },
+  img: {
+    height: 250,
+    width: 250,
   },
 });

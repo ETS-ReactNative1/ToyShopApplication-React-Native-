@@ -4,11 +4,17 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
+import {PageData} from '../Data/Onboarddata';
 
 import BoardingSlides from '../Components/BoardingSlides';
 
 //Array for the Data
 const Words = ['Hey', 'There', "I'am", 'developer'];
+
+//original Eco-Toys
+//Amazing Toys Design
+//Favriote Impression
+//Magical character
 
 export default function Onboardingscreen({navigation}) {
   //Storing the TranslateX Value in the Shared Value Bcz we need this valur for Animations
@@ -30,13 +36,13 @@ export default function Onboardingscreen({navigation}) {
         style={{flex: 1}}
         pagingEnabled
         horizontal>
-        {Words.map((title, index) => {
+        {PageData.map((item, index) => {
           return (
             <BoardingSlides
               key={index.toString()}
-              title={title}
               index={index}
               translateX={translateX}
+              Page={item}
             />
           );
         })}
