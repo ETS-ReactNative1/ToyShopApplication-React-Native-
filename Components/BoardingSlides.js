@@ -109,6 +109,7 @@ export default function BoardingSlides({index, translateX, Page}) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1.5,
     height,
     width,
     justifyContent: 'center',

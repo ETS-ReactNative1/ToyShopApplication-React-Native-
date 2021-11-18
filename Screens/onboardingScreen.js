@@ -26,14 +26,18 @@ export default function Onboardingscreen({navigation}) {
     translateX.value = event.contentOffset.x;
   });
 
+  // style={[
+  //   styles.container,
+  //   {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
+  // ]}
+
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper]}>
       <Animated.ScrollView
         scrollEventThrottle={16}
         onScroll={ScrollHandler}
         showsHorizontalScrollIndicator={false}
         snapToAlignment
-        style={{flex: 1}}
         pagingEnabled
         horizontal>
         {PageData.map((item, index) => {
@@ -47,6 +51,9 @@ export default function Onboardingscreen({navigation}) {
           );
         })}
       </Animated.ScrollView>
+      <View style={styles.footer}>
+        <Text>Thisis the Text</Text>
+      </View>
     </View>
   );
 }
@@ -54,8 +61,12 @@ export default function Onboardingscreen({navigation}) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+  },
+  footer: {
+    height: 50,
+    marginBottom: 10,
+    bottom: 0,
+    position: 'absolute',
+    backgroundColor: 'red',
   },
 });
