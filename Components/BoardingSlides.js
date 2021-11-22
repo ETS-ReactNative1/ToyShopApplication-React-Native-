@@ -1,25 +1,21 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Pressable,
-  Image,
-} from 'react-native';
+import {Text, StyleSheet, Dimensions, View} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
   useAnimatedStyle,
+  useDerivedValue,
 } from 'react-native-reanimated';
 
 import {fonststyle} from '../Config/fontstyles';
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('screen');
+const WIDTH = Dimensions.get('window').width;
 
-const size = width * 0.9;
+const size = WIDTH * 0.9;
 
 export default function BoardingSlides({index, translateX, Page}) {
-  console.log(Page);
+  // console.log(Page);
+
   //animated Style
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
@@ -86,7 +82,7 @@ export default function BoardingSlides({index, translateX, Page}) {
     <Animated.View
       style={[
         styles.container,
-        {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
+        // {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
       ]}>
       <Animated.View style={[styles.headingwrapper, aTexystyle]}>
         <Text style={[styles.txt]}>{Page.title}</Text>
@@ -94,7 +90,7 @@ export default function BoardingSlides({index, translateX, Page}) {
       <Animated.View
         style={[
           styles.square,
-          {backgroundColor: `rgba(242,97,87,0.${index + 5})`},
+          // {backgroundColor: `rgba(242,97,87,0.${index + 5})`},
           aStyle,
         ]}>
         <Animated.Image
@@ -109,16 +105,16 @@ export default function BoardingSlides({index, translateX, Page}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.5,
-    height,
+    height: '100%',
     width,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F0D9FF',
   },
   square: {
     height: size,
     width: size,
-    backgroundColor: '#1F363D',
+    backgroundColor: '#BFA2DB',
     borderRadius: 200,
     justifyContent: 'center',
     alignItems: 'center',
@@ -132,9 +128,9 @@ const styles = StyleSheet.create({
     width: 250,
   },
   headingwrapper: {
-    position: 'absolute',
-    top: 0,
-    marginTop: 80,
-    padding: 15,
+    paddingBottom: 15,
+    marginBottom: 10,
+
+    textAlign: 'center',
   },
 });
