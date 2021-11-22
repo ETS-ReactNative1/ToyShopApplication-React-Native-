@@ -16,3 +16,5 @@ export const PageData = [
     source: require('../assets/Images/img6.png'),
   },
 ];
+
+//Page data

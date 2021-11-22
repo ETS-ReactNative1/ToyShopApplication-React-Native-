@@ -6,3 +6,5 @@ export const COLROS = {
   body: '',
   error: '',
 };
+
+//adding Colors

@@ -10,3 +10,5 @@ export default function OnboradingStack() {
     </Boarding.Navigator>
   );
 }
+
+//Onboarding

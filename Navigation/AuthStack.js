@@ -14,3 +14,5 @@ export default function AuthStack() {
     </Auth.Navigator>
   );
 }
+
+//auth stack
