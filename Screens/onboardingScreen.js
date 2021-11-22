@@ -11,11 +11,6 @@ import BoardingSlides from '../Components/BoardingSlides';
 //Array for the Data
 const Words = ['Hey', 'There', "I'am", 'developer'];
 
-//original Eco-Toys
-//Amazing Toys Design
-//Favriote Impression
-//Magical character
-
 export default function Onboardingscreen({navigation}) {
   //Storing the TranslateX Value in the Shared Value Bcz we need this valur for Animations
 
@@ -25,11 +20,6 @@ export default function Onboardingscreen({navigation}) {
   const ScrollHandler = useAnimatedScrollHandler(event => {
     translateX.value = event.contentOffset.x;
   });
-
-  // style={[
-  //   styles.container,
-  //   {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
-  // ]}
 
   return (
     <View style={[styles.wrapper]}>
