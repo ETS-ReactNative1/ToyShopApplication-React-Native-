@@ -14,3 +14,8 @@ export default function HomeStack({}) {
 }
 
 //homeStack
+
+//We can also put the auth Stack into the Stack.Navigator and then we can conditionally Navogate
+// the auth and the Home Stack
+
+//Pu
