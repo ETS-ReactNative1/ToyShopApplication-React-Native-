@@ -10,3 +10,8 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({});
+
+//Remaning
+// Popping of the Onvoarding Screens from the Stack
+// Building the  Login screens and the Sign up Screen
+// Navigation from Login screen to the Homescreen
