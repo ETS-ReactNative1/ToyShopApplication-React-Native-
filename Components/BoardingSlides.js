@@ -1,10 +1,9 @@
 import React from 'react';
-import {Text, StyleSheet, Dimensions, View} from 'react-native';
+import {Text, StyleSheet, Dimensions} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
   useAnimatedStyle,
-  useDerivedValue,
 } from 'react-native-reanimated';
 
 import {fonststyle} from '../Config/fontstyles';
@@ -28,6 +27,8 @@ export default function BoardingSlides({index, translateX, Page}) {
       [0, 1, 0],
       Extrapolate.CLAMP,
     );
+
+    //Asfaf
 
     return {
       transform: [{scale: scale}],
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1,
   },
 
   txt: {
@@ -134,3 +136,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+//implement a new design from  dribbles
