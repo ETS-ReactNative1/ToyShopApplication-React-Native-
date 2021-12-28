@@ -1,9 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  useWindowDimensions,
+} from 'react-native';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
 export default function LoginScreen() {
+  const {width, height} = useWindowDimensions();
+
   return (
     <View style={styles.container}>
       <View style={styles.txtcontainer}>
@@ -23,6 +32,7 @@ export default function LoginScreen() {
           placeholder="Password"
           placeholderTextColor="#5d6578"
           style={styles.passtextinput}
+          secureTextEntry={true}
         />
       </View>
     </View>
@@ -35,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   txtcontainer: {
-    marginTop: 60,
+    marginTop: '15%',
     marginHorizontal: 20,
   },
   txtmain: {
@@ -45,14 +55,15 @@ const styles = StyleSheet.create({
   txtsub: {
     color: COLORS.subtext,
     ...fonststyle.description,
-    fontSize: 26,
+    fontSize: 24,
     marginTop: 10,
+    letterSpacing: 0.3,
   },
 
   maincontainer: {
     marginHorizontal: 15,
     borderRadius: 10,
-    marginTop: 100,
+    marginTop: '22%',
     paddingHorizontal: 10,
   },
 
