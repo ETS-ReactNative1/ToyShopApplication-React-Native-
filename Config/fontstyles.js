@@ -18,7 +18,13 @@ export const fonststyle = {
   },
   heading2: {
     fontFamily: 'NunitoBold',
-
     fontSize: 33,
   },
+  heading3: {
+    fontSize: 30,
+    fontFamily: 'NunitoSemibold',
+    fontWeight: '800',
+  },
 };
+
+//font Style

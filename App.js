@@ -19,8 +19,9 @@ import MainNavigator from './Navigation/MainNavigator';
 //Stack Nav for Onboarding Screens
 
 import OnboradingStack from './Navigation/OnboradingStack';
+import AuthStack from './Navigation/AuthStack';
 
-let bool = true;
+let bool = false;
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <MainNavigator />
+          <AuthStack />
         </NavigationContainer>
       )}
     </>
