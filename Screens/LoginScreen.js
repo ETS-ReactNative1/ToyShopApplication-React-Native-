@@ -15,13 +15,13 @@ export default function LoginScreen() {
       <View style={styles.maincontainer}>
         <TextInput
           placeholder="Phone,email or username"
-          placeholderTextColor="#fff"
+          placeholderTextColor="#5d6578"
           style={styles.usertextinput}
         />
 
         <TextInput
           placeholder="Password"
-          placeholderTextColor="#fff"
+          placeholderTextColor="#5d6578"
           style={styles.passtextinput}
         />
       </View>
