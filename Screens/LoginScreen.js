@@ -4,13 +4,15 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Image,
   useWindowDimensions,
+  Pressable,
 } from 'react-native';
+import CustomeButton from '../Components/CustomeButton';
+import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   const {width, height} = useWindowDimensions();
 
   return (
@@ -22,19 +24,19 @@ export default function LoginScreen() {
         </Text>
       </View>
       <View style={styles.maincontainer}>
-        <TextInput
-          placeholder="Phone,email or username"
-          placeholderTextColor="#5d6578"
-          style={styles.usertextinput}
-        />
-
-        <TextInput
-          placeholder="Password"
-          placeholderTextColor="#5d6578"
-          style={styles.passtextinput}
-          secureTextEntry={true}
-        />
+        <Custominput placeholder="Phone,email or username" />
+        <Custominput placeholder="Password" secure={true} />
       </View>
+      <Text style={styles.registertxt}>
+        Don't have an account?{' '}
+        <Text
+          style={styles.regitserbold}
+          onPress={() => navigation.navigate('Signup')}>
+          {' '}
+          Register{' '}
+        </Text>{' '}
+      </Text>
+      <CustomeButton title="Sign in" />
     </View>
   );
 }
@@ -62,36 +64,22 @@ const styles = StyleSheet.create({
 
   maincontainer: {
     marginHorizontal: 15,
-    borderRadius: 10,
+
     marginTop: '22%',
     paddingHorizontal: 10,
   },
 
-  usertextinput: {
-    borderWidth: 1.3,
-    borderColor: '#354341',
-    borderRadius: 10,
-    marginVertical: 10,
-
-    paddingHorizontal: 15,
+  registertxt: {
     ...fonststyle.description,
-    fontSize: 15,
-    fontWeight: 'normal',
-    letterSpacing: 2,
     color: COLORS.fadewhite,
+    textAlign: 'center',
+    marginTop: '10%',
+    letterSpacing: 0.5,
   },
-
-  passtextinput: {
-    borderWidth: 1.3,
-    borderColor: '#354341',
-    borderRadius: 10,
-    marginVertical: 10,
-    paddingHorizontal: 15,
-    ...fonststyle.description,
-    fontSize: 15,
-    fontWeight: 'normal',
-    letterSpacing: 2,
-    color: COLORS.fadewhite,
+  regitserbold: {
+    fontWeight: 'bold',
+    color: COLORS.secondary,
+    letterSpacing: 0.5,
   },
 });
 

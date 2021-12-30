@@ -9,7 +9,7 @@
 import React from 'react';
 
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DarkTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Onboardingscreen} from './Screens/index';
 
@@ -20,6 +20,7 @@ import MainNavigator from './Navigation/MainNavigator';
 
 import OnboradingStack from './Navigation/OnboradingStack';
 import AuthStack from './Navigation/AuthStack';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 let bool = false;
 
@@ -31,9 +32,11 @@ const App = () => {
           <OnboradingStack />
         </NavigationContainer>
       ) : (
-        <NavigationContainer>
-          <AuthStack />
-        </NavigationContainer>
+        <SafeAreaProvider style={{backgroundColor: '#000'}}>
+          <NavigationContainer>
+            <AuthStack />
+          </NavigationContainer>
+        </SafeAreaProvider>
       )}
     </>
   );
