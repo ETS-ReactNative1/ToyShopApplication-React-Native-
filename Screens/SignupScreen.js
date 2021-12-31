@@ -10,7 +10,7 @@ export default function SignupScreen() {
     <View style={styles.wrapper}>
       <View style={styles.header}>
         <Text style={styles.textmain}>Welcome</Text>
-        <Text style={styles.textsub}>Let's Start yout Journey! </Text>
+        <Text style={styles.textsub}>Let's Start your Journey! </Text>
       </View>
       <View style={styles.inputcontaienr}>
         <Custominput placeholder="Email" />
@@ -18,6 +18,9 @@ export default function SignupScreen() {
         <Custominput placeholder="Password" secure={true} />
       </View>
       <CustomeButton title="Sign Up" />
+      <View style={styles.socialcontainer}>
+        <Text style={styles.signintxt}> Sign in with</Text>
+      </View>
     </View>
   );
 }
@@ -49,4 +52,15 @@ const styles = StyleSheet.create({
     marginTop: '18%',
     marginHorizontal: 25,
   },
+  signintxt: {
+    ...fonststyle.description,
+    color: COLORS.fadewhite,
+    textAlign: 'center',
+    marginTop: '8%',
+    letterSpacing: 0.5,
+    fontWeight: 'bold',
+  },
 });
+
+//Remaning
+//To add the Google and facebook Sign in using Firebase

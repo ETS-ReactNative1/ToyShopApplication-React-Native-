@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
 export default function CustomeButton({title}) {
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity activeOpacity={0.5} style={styles.wrapper}>
       <Text style={styles.title}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
