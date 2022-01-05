@@ -7,6 +7,7 @@ export default function OnboradingStack() {
   return (
     <Boarding.Navigator screenOptions={{headerShown: false}}>
       <Boarding.Screen name="Boarding" component={Onboardingscreen} />
+      
     </Boarding.Navigator>
   );
 }
