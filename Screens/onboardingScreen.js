@@ -39,6 +39,10 @@ export default function Onboardingscreen({navigation}) {
     scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 1)});
   }, []);
 
+  const skip = useCallback(() => {
+    scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 3)});
+  });
+
   return (
     <View style={[styles.wrapper]}>
       <Animated.ScrollView
@@ -56,6 +60,7 @@ export default function Onboardingscreen({navigation}) {
               index={index}
               translateX={translateX}
               Page={item}
+              skipbtn={skip}
             />
           );
         })}
@@ -66,6 +71,7 @@ export default function Onboardingscreen({navigation}) {
         PageData={PageData}
         activedot={activeIndex}
         onPress={handlepress}
+        skip={skip}
       />
     </View>
   );

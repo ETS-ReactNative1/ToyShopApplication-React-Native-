@@ -1,5 +1,11 @@
 import React from 'react';
-import {Text, StyleSheet, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -12,7 +18,7 @@ const WIDTH = Dimensions.get('window').width;
 
 const size = WIDTH * 0.9;
 
-export default function BoardingSlides({index, translateX, Page}) {
+export default function BoardingSlides({index, translateX, Page, skipbtn}) {
   // console.log(Page);
 
   //animated Style
@@ -85,6 +91,10 @@ export default function BoardingSlides({index, translateX, Page}) {
         styles.container,
         // {backgroundColor: `rgba(185,106,201,0.${index + 6})`},
       ]}>
+      <TouchableOpacity onPress={skipbtn} style={styles.skipcontainer}>
+        <Text style={styles.skiptext}>Skip</Text>
+      </TouchableOpacity>
+
       <Animated.View style={[styles.headingwrapper, aTexystyle]}>
         <Text style={[styles.txt]}>{Page.title}</Text>
       </Animated.View>
@@ -134,6 +144,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
 
     textAlign: 'center',
+  },
+  skipcontainer: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    padding: 10,
+    marginHorizontal: 5,
+  },
+  skiptext: {
+    ...fonststyle.description,
+    fontWeight: 'bold',
+    fontSize: 18,
+    letterSpacing: 0.7,
+    textTransform: 'uppercase',
   },
 });
 

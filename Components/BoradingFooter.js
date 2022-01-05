@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import DotComponent from './DotComponent';
@@ -8,7 +15,7 @@ import DotComponent from './DotComponent';
 //height and width
 const {height, width} = Dimensions.get('window');
 
-export default function BoradingFooter({PageData, activedot, onPress}) {
+export default function BoradingFooter({PageData, activedot, onPress, skip}) {
   return (
     <View style={styles.container}>
       <View style={styles.paginator}>
@@ -27,6 +34,9 @@ export default function BoradingFooter({PageData, activedot, onPress}) {
       <View style={styles.icon}>
         <Icon name="arrow-right" size={40} color="#000" onPress={onPress} />
       </View>
+      {/* <TouchableOpacity onPress={skip}>
+        <Text>Skip</Text>
+      </TouchableOpacity> */}
     </View>
   );
 }

@@ -22,7 +22,7 @@ import OnboradingStack from './Navigation/OnboradingStack';
 import AuthStack from './Navigation/AuthStack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-let bool = false;
+let bool = true;
 
 const App = () => {
   return (
