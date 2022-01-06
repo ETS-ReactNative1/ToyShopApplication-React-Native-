@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import Animated, {useAnimatedStyle, withTiming} from 'react-native-reanimated';
 
 export default function DotComponent({index, activedot}) {
-  console.log(activedot.value, 'This is Activedot');
+  // console.log(activedot.value, 'This is Activedot');
   const dotstyle = useAnimatedStyle(() => {
     const isActive = activedot.value === index;
 

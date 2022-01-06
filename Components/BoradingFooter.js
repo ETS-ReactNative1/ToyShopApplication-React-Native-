@@ -9,13 +9,20 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
+import {COLORS} from '../Config/ColorPallet';
+import CustomeButton from './CustomeButton';
 import DotComponent from './DotComponent';
 
 //arrow-right
 //height and width
 const {height, width} = Dimensions.get('window');
 
-export default function BoradingFooter({PageData, activedot, onPress, skip}) {
+export default function BoradingFooter({
+  PageData,
+  activedot,
+  onPress,
+  Islastslide,
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.paginator}>
@@ -31,12 +38,17 @@ export default function BoradingFooter({PageData, activedot, onPress, skip}) {
           );
         })}
       </View>
-      <View style={styles.icon}>
-        <Icon name="arrow-right" size={40} color="#000" onPress={onPress} />
-      </View>
-      {/* <TouchableOpacity onPress={skip}>
-        <Text>Skip</Text>
-      </TouchableOpacity> */}
+      {Islastslide === 3 ? (
+        <CustomeButton
+          extrastyle={styles.btnstyle}
+          title="Get Started"
+          textstyle={styles.btntextstyle}
+        />
+      ) : (
+        <View style={styles.icon}>
+          <Icon name="arrow-right" size={40} color="#000" onPress={onPress} />
+        </View>
+      )}
     </View>
   );
 }
@@ -51,6 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 12,
+    alignItems: 'center',
   },
   paginator: {
     flexDirection: 'row',
@@ -62,5 +75,19 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     // backgroundColor: 'red',
     alignItems: 'center',
+  },
+  btnstyle: {
+    margin: 0,
+    marginTop: 0,
+    marginBottom: 0,
+    backgroundColor: '#548CFF',
+    height: '150%',
+    width: '45%',
+    marginHorizontal: 10,
+  },
+  btntextstyle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: COLORS.secondary,
   },
 });

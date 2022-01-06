@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import React, {useCallback, useState, useEffect} from 'react';
+import {View, Text, StyleSheet, Dimensions, Settings} from 'react-native';
 import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useDerivedValue,
   useSharedValue,
+  event,
 } from 'react-native-reanimated';
 import {PageData} from '../Data/Onboarddata';
 
@@ -15,9 +16,10 @@ const WIDTH = Dimensions.get('screen').width;
 const HEIGHT = Dimensions.get('screen').height;
 
 //Array for the Data
-const Words = ['Hey', 'There', "I'am", 'developer'];
 
 export default function Onboardingscreen({navigation}) {
+  const [Islastslide, SetIslastslide] = useState(0);
+
   //Storing the TranslateX Value in the Shared Value Bcz we need this valur for Animations
 
   const translateX = useSharedValue(0);
@@ -29,7 +31,16 @@ export default function Onboardingscreen({navigation}) {
   //Scroll handler to get the Scrolling event on Horizontal axis
   const ScrollHandler = useAnimatedScrollHandler(event => {
     translateX.value = event.contentOffset.x;
+
+    // SetIslastslide(currentIndex);
   });
+
+  const getlastslideindex = e => {
+    const contentOffset = e.nativeEvent.contentOffset.x;
+    const currentIndex = Math.round(contentOffset / WIDTH);
+    console.log('This is the cirrentindex of time  2', currentIndex);
+    SetIslastslide(currentIndex);
+  };
 
   const scrollref = useAnimatedRef();
 
@@ -48,6 +59,8 @@ export default function Onboardingscreen({navigation}) {
       <Animated.ScrollView
         ref={scrollref}
         scrollEventThrottle={16}
+        onMomentumScrollEnd={getlastslideindex}
+        onResponderEnd={getlastslideindex}
         onScroll={ScrollHandler}
         showsHorizontalScrollIndicator={false}
         snapToAlignment
@@ -72,6 +85,7 @@ export default function Onboardingscreen({navigation}) {
         activedot={activeIndex}
         onPress={handlepress}
         skip={skip}
+        Islastslide={Islastslide}
       />
     </View>
   );

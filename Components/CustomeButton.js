@@ -3,10 +3,10 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
-export default function CustomeButton({title}) {
+export default function CustomeButton({title, extrastyle, textstyle}) {
   return (
-    <TouchableOpacity activeOpacity={0.5} style={styles.wrapper}>
-      <Text style={styles.title}>{title}</Text>
+    <TouchableOpacity activeOpacity={0.5} style={[styles.wrapper, extrastyle]}>
+      <Text style={[styles.title, textstyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }
