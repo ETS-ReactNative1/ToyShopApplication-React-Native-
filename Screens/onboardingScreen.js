@@ -52,6 +52,8 @@ export default function Onboardingscreen({navigation}) {
 
   const skip = useCallback(() => {
     scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 3)});
+    const lastslideindex = PageData.length - 1;
+    SetIslastslide(lastslideindex);
   });
 
   return (
@@ -60,7 +62,6 @@ export default function Onboardingscreen({navigation}) {
         ref={scrollref}
         scrollEventThrottle={16}
         onMomentumScrollEnd={getlastslideindex}
-        onResponderEnd={getlastslideindex}
         onScroll={ScrollHandler}
         showsHorizontalScrollIndicator={false}
         snapToAlignment
