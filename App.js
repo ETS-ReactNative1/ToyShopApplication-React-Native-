@@ -21,23 +21,16 @@ import MainNavigator from './Navigation/MainNavigator';
 import OnboradingStack from './Navigation/OnboradingStack';
 import AuthStack from './Navigation/AuthStack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import HomeStack from './Navigation/HomeStack';
 
 let bool = true;
 
 const App = () => {
   return (
     <>
-      {bool === true ? (
-        <NavigationContainer>
-          <OnboradingStack />
-        </NavigationContainer>
-      ) : (
-        <SafeAreaProvider style={{backgroundColor: '#000'}}>
-          <NavigationContainer>
-            <AuthStack />
-          </NavigationContainer>
-        </SafeAreaProvider>
-      )}
+      <NavigationContainer>
+        <HomeStack />
+      </NavigationContainer>
     </>
   );
 };

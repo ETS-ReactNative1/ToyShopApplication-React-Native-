@@ -16,7 +16,7 @@ import {fonststyle} from '../Config/fontstyles';
 const {height, width} = Dimensions.get('screen');
 const WIDTH = Dimensions.get('window').width;
 
-const size = WIDTH * 0.9;
+const size = WIDTH * 0.8;
 
 export default function BoardingSlides({index, translateX, Page, skipbtn}) {
   // console.log(Page);
@@ -95,20 +95,16 @@ export default function BoardingSlides({index, translateX, Page, skipbtn}) {
         <Text style={styles.skiptext}>Skip</Text>
       </TouchableOpacity>
 
-      <Animated.View style={[styles.headingwrapper, aTexystyle]}>
-        <Text style={[styles.txt]}>{Page.title}</Text>
-      </Animated.View>
-      <Animated.View
-        style={[
-          styles.square,
-          // {backgroundColor: `rgba(242,97,87,0.${index + 5})`},
-          aStyle,
-        ]}>
+      <Animated.View style={[styles.square, aStyle]}>
         <Animated.Image
           style={[styles.img, aImagestyle]}
           source={Page.source}
           resizeMode="cover"
         />
+      </Animated.View>
+      <Animated.View style={[styles.headingwrapper, aTexystyle]}>
+        <Text style={[styles.txt]}>{Page.title}</Text>
+        <Text style={[styles.subtxt]}>{Page.subtitle}</Text>
       </Animated.View>
     </Animated.View>
   );
@@ -134,6 +130,7 @@ const styles = StyleSheet.create({
 
   txt: {
     ...fonststyle.heading2,
+    fontSize: 28,
   },
   img: {
     height: 250,
@@ -142,6 +139,7 @@ const styles = StyleSheet.create({
   headingwrapper: {
     paddingBottom: 15,
     marginBottom: 10,
+    marginTop: '10%',
 
     textAlign: 'center',
   },
@@ -158,6 +156,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     letterSpacing: 0.7,
     textTransform: 'uppercase',
+  },
+  subtxt: {
+    textAlign: 'center',
+    ...fonststyle.description,
+    marginTop: '2.5%',
   },
 });
 

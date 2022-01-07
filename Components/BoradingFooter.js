@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import {COLORS} from '../Config/ColorPallet';
 import CustomeButton from './CustomeButton';
 import DotComponent from './DotComponent';
+import {useNavigation} from '@react-navigation/native';
 
 //arrow-right
 //height and width
@@ -23,6 +17,9 @@ export default function BoradingFooter({
   onPress,
   Islastslide,
 }) {
+  //hooks
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.paginator}>
@@ -43,6 +40,7 @@ export default function BoradingFooter({
           extrastyle={styles.btnstyle}
           title="Get Started"
           textstyle={styles.btntextstyle}
+          onPress={() => navigation.navigate('HomeScreen')}
         />
       ) : (
         <View style={styles.icon}>
