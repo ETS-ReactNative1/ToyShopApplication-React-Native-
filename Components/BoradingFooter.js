@@ -46,7 +46,7 @@ export default function BoradingFooter({
         />
       ) : (
         <View style={styles.icon}>
-          <Icon name="arrow-right" size={40} color="#000" onPress={onPress} />
+          <Icon name="arrow-right" size={35} color="#000" onPress={onPress} />
         </View>
       )}
     </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     bottom: 0,
     position: 'absolute',
-
+    //  backgroundColor: 'red',
     width,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     paddingRight: 15,
-    // backgroundColor: 'red',
+    //  backgroundColor: 'yellow',
     alignItems: 'center',
   },
   btnstyle: {

@@ -18,12 +18,14 @@ const HEIGHT = Dimensions.get('screen').height;
 //Array for the Data
 
 export default function Onboardingscreen({navigation}) {
+  //to set he last slide so that we can do a conditional rendering of the get started button
   const [Islastslide, SetIslastslide] = useState(0);
 
   //Storing the TranslateX Value in the Shared Value Bcz we need this valur for Animations
 
   const translateX = useSharedValue(0);
 
+  //getting the active index
   const activeIndex = useDerivedValue(() => {
     return Math.round(translateX.value / WIDTH);
   });
@@ -31,23 +33,27 @@ export default function Onboardingscreen({navigation}) {
   //Scroll handler to get the Scrolling event on Horizontal axis
   const ScrollHandler = useAnimatedScrollHandler(event => {
     translateX.value = event.contentOffset.x;
-
-    // SetIslastslide(currentIndex);
   });
 
+  //to get the last slide index and set with the help of setter
   const getlastslideindex = e => {
     const contentOffset = e.nativeEvent.contentOffset.x;
     const currentIndex = Math.round(contentOffset / WIDTH);
     console.log('This is the cirrentindex of time  2', currentIndex);
+    //setting the last index
     SetIslastslide(currentIndex);
   };
 
   const scrollref = useAnimatedRef();
 
   const handlepress = useCallback(() => {
-    if (activeIndex.value === PageData.length - 1) return;
-
-    scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 1)});
+    if (activeIndex.value === PageData.length - 2) {
+      scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 1)});
+      SetIslastslide(3);
+      return;
+    } else {
+      scrollref.current?.scrollTo({x: WIDTH * (activeIndex.value + 1)});
+    }
   }, []);
 
   const skip = useCallback(() => {
