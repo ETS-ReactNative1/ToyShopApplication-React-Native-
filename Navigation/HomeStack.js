@@ -8,7 +8,6 @@ const Stack = createNativeStackNavigator();
 export default function HomeStack({}) {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Boarding" component={Onboardingscreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
