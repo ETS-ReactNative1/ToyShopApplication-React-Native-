@@ -3,8 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text
+        style={{textAlign: 'center', fontWeight: 'bold', letterSpacing: 10}}>
+        HomeScreen
+      </Text>
     </View>
   );
 }
