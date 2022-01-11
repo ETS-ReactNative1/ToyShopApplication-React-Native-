@@ -30,7 +30,7 @@ const App = () => {
 
   const [isFirstLaunched, SetisFirstLaunched] = useState(null);
 
-  //Setting up the eff3dt
+  //Setting up the effect
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
@@ -72,3 +72,10 @@ const styles = StyleSheet.create({});
 export default App;
 
 //App
+//todo
+//To Connect the application to the Backend
+//Authenticate the user
+//Setup the fireStore
+//Add the Tabs and Render Screens
+
+//REnderinf the issue of the Syaytem and the Code
