@@ -6,11 +6,12 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Main
 import MainNavigator from './Navigation/MainNavigator';
@@ -25,8 +26,27 @@ let bool = true;
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  return (
-    <>
+  //to determine of launched first or not
+
+  const [isFirstLaunched, SetisFirstLaunched] = useState(null);
+
+  //Setting up the eff3dt
+
+  useEffect(() => {
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if (value === null) {
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        SetisFirstLaunched(true);
+      } else {
+        SetisFirstLaunched(false);
+      }
+    });
+  }, []);
+
+  if (isFirstLaunched === null) {
+    return null;
+  } else if (isFirstLaunched === true) {
+    return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Onboardingstack" component={OnboradingStack} />
@@ -34,8 +54,17 @@ const App = () => {
           <Stack.Screen name="Mainstack" component={MainNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
-  );
+    );
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="AUthStack" component={AuthStack} />
+          <Stack.Screen name="Mainstack" component={MainNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 };
 
 const styles = StyleSheet.create({});
