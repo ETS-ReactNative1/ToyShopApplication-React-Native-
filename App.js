@@ -6,12 +6,13 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
-import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Authcontext, AuthProvider} from './Navigation/AuthProvider';
+import auth from '@react-native-firebase/auth';
 
 //Main
 import MainNavigator from './Navigation/MainNavigator';
@@ -26,11 +27,24 @@ let bool = true;
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const {user, Setuser} = useContext(Authcontext);
+
   //to determine of launched first or not
 
   const [isFirstLaunched, SetisFirstLaunched] = useState(null);
 
+  //using context to get the user
+
+  const [intializing, Setintializing] = useState(true);
+
+  const onAuthStateChanged = user => {};
+
   //Setting up the effect
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  });
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
@@ -47,35 +61,31 @@ const App = () => {
     return null;
   } else if (isFirstLaunched === true) {
     return (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Onboardingstack" component={OnboradingStack} />
-          <Stack.Screen name="AUthStack" component={AuthStack} />
-          <Stack.Screen name="Mainstack" component={MainNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AuthProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Onboardingstack" component={OnboradingStack} />
+            <Stack.Screen name="AUthStack" component={AuthStack} />
+            <Stack.Screen name="Mainstack" component={MainNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AuthProvider>
     );
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="AUthStack" component={AuthStack} />
-          <Stack.Screen name="Mainstack" component={MainNavigator} />
-        </Stack.Navigator>
+        <AuthProvider>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="AUthStack" component={AuthStack} />
+            <Stack.Screen name="Mainstack" component={MainNavigator} />
+          </Stack.Navigator>
+        </AuthProvider>
       </NavigationContainer>
     );
   }
 };
 
-const styles = StyleSheet.create({});
-
 export default App;
 
-//App
-//todo
-//To Connect the application to the Backend
-//Authenticate the user
-//Setup the fireStore
-//Add the Tabs and Render Screens
-
-//REnderinf the issue of the Syaytem and the Code
+//Main stack is for Main HomeScreens
+//Auth Stack is For Authentication Screens

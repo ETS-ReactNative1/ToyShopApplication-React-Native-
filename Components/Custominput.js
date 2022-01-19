@@ -4,7 +4,6 @@ import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
 export default function Custominput({style, placeholder, secure}) {
-  console.log(secure);
   return (
     <View>
       <TextInput
