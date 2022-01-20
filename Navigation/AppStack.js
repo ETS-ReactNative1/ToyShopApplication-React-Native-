@@ -12,7 +12,7 @@ import HomeStack from './HomeStack';
 import {AuthProvider} from './AuthProvider';
 const Tab = createBottomTabNavigator();
 
-export default function MainNavigator({}) {
+export default function AppStack({}) {
   return (
     <AuthProvider>
       <Tab.Navigator screenOptions={{headerShown: false}}>

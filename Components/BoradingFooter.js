@@ -40,7 +40,7 @@ export default function BoradingFooter({
           extrastyle={styles.btnstyle}
           title="Get Started"
           textstyle={styles.btntextstyle}
-          onPress={() => navigation.replace('Mainstack')}
+          onPress={() => navigation.replace('Login')}
         />
       ) : (
         <View style={styles.icon}>
