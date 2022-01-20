@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
-
+import Authcontext from '../Navigation/Context';
 export default function SignupScreen() {
   const [name, Setname] = useState();
   const [email, Setemail] = useState();
   const [Password, SetPassword] = useState();
+
+  const {register} = useContext(Authcontext);
+
+  console.log(register);
 
   return (
     <View style={styles.wrapper}>
@@ -33,7 +37,10 @@ export default function SignupScreen() {
           onChangeText={Userpass => SetPassword(Userpass)}
         />
       </View>
-      <CustomeButton title="Sign Up" />
+      <CustomeButton
+        title="Sign Up"
+        onPress={() => register(email, Password)}
+      />
       <View style={styles.socialcontainer}>
         <Text style={styles.signintxt}> Sign in with</Text>
       </View>

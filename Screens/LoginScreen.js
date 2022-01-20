@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,13 @@ import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
+import AuthContext from '../Navigation/Context';
 
 export default function LoginScreen({navigation}) {
   const [email, Setemail] = useState();
   const [Password, SetPassword] = useState();
+
+  const {login} = useContext(AuthContext);
 
   const {width, height} = useWindowDimensions();
 
@@ -49,7 +52,7 @@ export default function LoginScreen({navigation}) {
           Register{' '}
         </Text>{' '}
       </Text>
-      <CustomeButton title="Sign in" />
+      <CustomeButton title="Sign in" onPress={() => login(email, Password)} />
     </View>
   );
 }
