@@ -1,27 +1,28 @@
-import {View, Text} from 'react-native';
 import React, {createContext, useState} from 'react';
+
 import auth from '@react-native-firebase/auth';
 
-export const Authcontext = createContext();
+//creating this Authprovider to Enable a sign in and sign up functionality
 
-export function AuthProvider({children}) {
-  const [user, Setuser] = useState(null);
+const Authprovider = ({children}) => {
+  //creating a user state
+  const [User, SetUser] = useState(null);
 
   return (
     <Authcontext.Provider
       value={{
-        user,
-        Setuser,
-        login: async (Email, Password) => {
+        User,
+        SetUser,
+        login: async (email, password) => {
           try {
-            await auth().signInWithEmailAndPassword(Email, Password);
+            await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
           }
         },
-        register: async (Email, Password) => {
+        register: async (email, password) => {
           try {
-            await auth().createUserWithEmailAndPassword(Email, Password);
+            await auth().createUserWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
           }
@@ -37,4 +38,11 @@ export function AuthProvider({children}) {
       {children}
     </Authcontext.Provider>
   );
-}
+};
+
+export default Authprovider;
+
+// wrappig a code in a Provider so that it will be accessible to all the Layers
+//which is i between the <AuthStack.Provider>
+//in a <AuthStack.Provider /> we have to pass the value { its a data that can be accessible to from anywhere} which gonna be available to all
+// the component

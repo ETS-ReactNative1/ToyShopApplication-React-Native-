@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
-export default function Custominput({style, placeholder, secure}) {
+export default function Custominput({style, placeholder, secure, ...rest}) {
   return (
     <View>
       <TextInput
@@ -11,6 +11,7 @@ export default function Custominput({style, placeholder, secure}) {
         placeholderTextColor="#5d6578"
         style={[styles.textinput, style]}
         secureTextEntry={secure}
+        {...rest}
       />
     </View>
   );

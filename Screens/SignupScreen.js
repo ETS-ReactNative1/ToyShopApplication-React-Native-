@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
@@ -6,6 +6,10 @@ import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
 export default function SignupScreen() {
+  const [name, Setname] = useState();
+  const [email, Setemail] = useState();
+  const [Password, SetPassword] = useState();
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
@@ -13,9 +17,21 @@ export default function SignupScreen() {
         <Text style={styles.textsub}>Let's Start your Journey! </Text>
       </View>
       <View style={styles.inputcontaienr}>
-        <Custominput placeholder="Email" />
-        <Custominput placeholder="Name" />
-        <Custominput placeholder="Password" secure={true} />
+        <Custominput
+          placeholder="Email"
+          onChangeText={Useremail => Setemail(Useremail)}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <Custominput
+          placeholder="Name"
+          onChangeText={Username => Setname(Username)}
+        />
+        <Custominput
+          placeholder="Password"
+          secure={true}
+          onChangeText={Userpass => SetPassword(Userpass)}
+        />
       </View>
       <CustomeButton title="Sign Up" />
       <View style={styles.socialcontainer}>

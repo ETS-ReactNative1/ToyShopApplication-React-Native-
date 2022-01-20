@@ -6,14 +6,12 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, useContext} from 'react';
-import AppNavigator from './Navigation/Appnavigator';
-
+import React from 'react';
+import Provider from './Navigation/index';
 const App = () => {
-  return <AppNavigator />;
+  return <Provider />;
 };
 
 export default App;
 
-//Main stack is for Main HomeScreens
-//Auth Stack is For Authentication Screens
+//App NAvigator is the mainnavigator

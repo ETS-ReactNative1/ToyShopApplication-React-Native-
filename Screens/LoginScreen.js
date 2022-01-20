@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,9 @@ import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 
 export default function LoginScreen({navigation}) {
+  const [email, Setemail] = useState();
+  const [Password, SetPassword] = useState();
+
   const {width, height} = useWindowDimensions();
 
   return (
@@ -24,8 +27,18 @@ export default function LoginScreen({navigation}) {
         </Text>
       </View>
       <View style={styles.maincontainer}>
-        <Custominput placeholder="Phone,email or username" />
-        <Custominput placeholder="Password" secure={true} />
+        <Custominput
+          placeholder="Phone,email or username"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          autoCorrect={false}
+          onChangeText={Useremail => Setemail(Useremail)}
+        />
+        <Custominput
+          placeholder="Password"
+          secure={true}
+          onChangeText={Userpass => SetPassword(Userpass)}
+        />
       </View>
       <Text style={styles.registertxt}>
         Don't have an account?{' '}
