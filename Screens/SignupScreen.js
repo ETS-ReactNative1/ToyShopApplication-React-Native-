@@ -12,8 +12,6 @@ export default function SignupScreen() {
 
   const {register} = useContext(Authcontext);
 
-  console.log(register);
-
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
