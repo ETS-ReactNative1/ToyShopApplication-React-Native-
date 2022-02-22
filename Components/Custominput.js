@@ -8,7 +8,7 @@ export default function Custominput({style, placeholder, secure, ...rest}) {
     <View>
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor="#5d6578"
+        placeholderTextColor="#1B1B1B"
         style={[styles.textinput, style]}
         secureTextEntry={secure}
         {...rest}
