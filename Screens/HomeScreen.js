@@ -12,7 +12,7 @@ export default function HomeScreen() {
       </Text>
       <Pressable onPress={() => logout()}>
         <Text style={{fontWeight: 'bold', fontSize: 25, marginVertical: 15}}>
-          Log out{' '}
+          Press me for LogOut
         </Text>
       </Pressable>
     </View>
