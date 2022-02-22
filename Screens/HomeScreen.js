@@ -4,6 +4,8 @@ import AuthContext from '../Navigation/Context';
 export default function HomeScreen() {
   const {logout} = useContext(AuthContext);
 
+  //testing api
+
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text
