@@ -19,7 +19,7 @@ export default function Custominput({style, placeholder, secure, ...rest}) {
 
 const styles = StyleSheet.create({
   textinput: {
-    borderWidth: 1.3,
+    borderWidth: 3,
     borderColor: '#354341',
     borderRadius: 10,
     marginVertical: 10,
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     letterSpacing: 2,
 
-    color: COLORS.fadewhite,
+    color: COLORS.textinput,
   },
 });

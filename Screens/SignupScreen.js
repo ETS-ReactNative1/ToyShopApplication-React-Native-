@@ -38,6 +38,7 @@ export default function SignupScreen() {
       <CustomeButton
         title="Sign Up"
         onPress={() => register(email, Password)}
+        extrastyle={{backgroundColor: COLORS.AuthButton}}
       />
       <View style={styles.socialcontainer}>
         <Text style={styles.signintxt}> Sign in with</Text>
@@ -58,16 +59,18 @@ const styles = StyleSheet.create({
   },
   textmain: {
     ...fonststyle.heading3,
-    color: COLORS.secondary,
+    color: COLORS.black,
     letterSpacing: 0.5,
+    fontWeight: 'bold',
   },
   textsub: {
     ...fonststyle.description,
-    color: COLORS.subtext,
+    color: COLORS.black,
     fontSize: 24,
     marginTop: 10,
     letterSpacing: 0.3,
     letterSpacing: 0.6,
+    fontWeight: 'bold',
   },
   inputcontaienr: {
     marginTop: '18%',
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
   },
   signintxt: {
     ...fonststyle.description,
-    color: COLORS.fadewhite,
+    color: COLORS.faintblack,
     textAlign: 'center',
     marginTop: '8%',
     letterSpacing: 0.5,

@@ -52,7 +52,12 @@ export default function LoginScreen({navigation}) {
           Register{' '}
         </Text>{' '}
       </Text>
-      <CustomeButton title="Sign in" onPress={() => login(email, Password)} />
+      <CustomeButton
+        title="Sign in"
+        onPress={() => login(email, Password)}
+        extrastyle={{backgroundColor: COLORS.AuthButton}}
+        textstyle={{color: COLORS.secondary}}
+      />
     </View>
   );
 }
@@ -67,15 +72,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   txtmain: {
-    color: COLORS.secondary,
+    color: COLORS.Loginheading,
     ...fonststyle.heading3,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
   },
   txtsub: {
-    color: COLORS.subtext,
+    color: COLORS.Loginsubtext,
     ...fonststyle.description,
-    fontSize: 24,
+    fontSize: 25,
     marginTop: 10,
     letterSpacing: 0.3,
+    fontWeight: 'bold',
   },
 
   maincontainer: {
@@ -87,15 +95,16 @@ const styles = StyleSheet.create({
 
   registertxt: {
     ...fonststyle.description,
-    color: COLORS.fadewhite,
+    color: COLORS.faintblack,
     textAlign: 'center',
     marginTop: '10%',
     letterSpacing: 0.5,
   },
   regitserbold: {
     fontWeight: 'bold',
-    color: COLORS.secondary,
+    color: COLORS.black,
     letterSpacing: 0.5,
+    fontSize: 15,
   },
 });
 
