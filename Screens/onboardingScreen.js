@@ -70,9 +70,8 @@ export default function Onboardingscreen({navigation}) {
         onMomentumScrollEnd={getlastslideindex}
         onScroll={ScrollHandler}
         showsHorizontalScrollIndicator={false}
-        snapToAlignment
         pagingEnabled
-        horizontal>
+        horizontal={true}>
         {PageData.map((item, index) => {
           return (
             <BoardingSlides
