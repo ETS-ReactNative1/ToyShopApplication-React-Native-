@@ -39,6 +39,7 @@ export default function SignupScreen() {
         title="Sign Up"
         onPress={() => register(email, Password)}
         extrastyle={{backgroundColor: COLORS.AuthButton}}
+        textstyle={{color: COLORS.secondary}}
       />
       <View style={styles.socialcontainer}>
         <Text style={styles.signintxt}> Sign in with</Text>
