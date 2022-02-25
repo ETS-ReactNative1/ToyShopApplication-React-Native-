@@ -3,23 +3,36 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
   useWindowDimensions,
-  Pressable,
+  TouchableOpacity,
 } from 'react-native';
 import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 import AuthContext from '../Navigation/Context';
-
+import authentication from '../api/authentication';
 export default function LoginScreen({navigation}) {
-  const [email, Setemail] = useState();
-  const [Password, SetPassword] = useState();
+  const [username, Setusername] = useState();
+  const [password, SetPassword] = useState();
+
+  //  console.log(email, password);
+
+  // console.log(username, password, 'from the state');
 
   const {login} = useContext(AuthContext);
 
-  const {width, height} = useWindowDimensions();
+  //on press for Sign in
+  const handleOnPress = async (username, password) => {
+    //making call to api
+
+    try {
+      const result = await authentication.login(username, password);
+      console.log(result.data);
+    } catch (error) {
+      console.log(error, 'Error from login trycatch');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -33,9 +46,8 @@ export default function LoginScreen({navigation}) {
         <Custominput
           placeholder="Phone,email or username"
           autoCapitalize="none"
-          keyboardType="email-address"
           autoCorrect={false}
-          onChangeText={Useremail => Setemail(Useremail)}
+          onChangeText={Useremail => Setusername(Useremail)}
         />
         <Custominput
           placeholder="Password"
@@ -52,9 +64,10 @@ export default function LoginScreen({navigation}) {
           Register{' '}
         </Text>{' '}
       </Text>
+
       <CustomeButton
         title="Sign in"
-        onPress={() => login(email, Password)}
+        onPress={() => handleOnPress(username, password)}
         extrastyle={{backgroundColor: COLORS.AuthButton}}
         textstyle={{color: COLORS.secondary}}
       />
