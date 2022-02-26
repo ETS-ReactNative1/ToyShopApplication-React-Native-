@@ -1,17 +1,13 @@
 import React, {useState, useContext} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  useWindowDimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
 import AuthContext from '../Navigation/Context';
 import authentication from '../api/authentication';
+import jwtDecode from 'jwt-decode';
+
 export default function LoginScreen({navigation}) {
   const [username, Setusername] = useState();
   const [password, SetPassword] = useState();
@@ -20,7 +16,7 @@ export default function LoginScreen({navigation}) {
 
   // console.log(username, password, 'from the state');
 
-  const {login} = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
   //on press for Sign in
   const handleOnPress = async (username, password) => {
@@ -28,7 +24,14 @@ export default function LoginScreen({navigation}) {
 
     try {
       const result = await authentication.login(username, password);
-      console.log(result.data);
+      const token = result.data;
+
+      //decoding the Token
+
+      const user = jwtDecode(token.accessToken);
+      authContext.SetUser(user);
+
+      console.log(user);
     } catch (error) {
       console.log(error, 'Error from login trycatch');
     }

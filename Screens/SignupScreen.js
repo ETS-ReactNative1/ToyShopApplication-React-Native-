@@ -10,7 +10,7 @@ export default function SignupScreen() {
   const [email, Setemail] = useState();
   const [Password, SetPassword] = useState();
 
-  const {register} = useContext(Authcontext);
+  const authContext = useContext(Authcontext);
 
   return (
     <View style={styles.wrapper}>
@@ -37,7 +37,7 @@ export default function SignupScreen() {
       </View>
       <CustomeButton
         title="Sign Up"
-        onPress={() => register(email, Password)}
+        onPress={() => console.warn('Pressed')}
         extrastyle={{backgroundColor: COLORS.AuthButton}}
         textstyle={{color: COLORS.secondary}}
       />
