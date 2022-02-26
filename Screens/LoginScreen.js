@@ -7,6 +7,7 @@ import {fonststyle} from '../Config/fontstyles';
 import AuthContext from '../Navigation/Context';
 import authentication from '../api/authentication';
 import jwtDecode from 'jwt-decode';
+import authStorage from '../auth/storage';
 
 export default function LoginScreen({navigation}) {
   const [username, Setusername] = useState();
@@ -29,11 +30,16 @@ export default function LoginScreen({navigation}) {
       //decoding the Token
 
       const user = jwtDecode(token.accessToken);
+
       authContext.SetUser(user);
 
-      console.log(user);
+      //Stroing token
+      //error : =>  To be Store as String
+      authStorage.storetoken(token.toString());
+
+      //console.log(user);
     } catch (error) {
-      console.log(error, 'Error from login trycatch');
+      // console.log(error, 'Error from login trycatch');
     }
   };
 

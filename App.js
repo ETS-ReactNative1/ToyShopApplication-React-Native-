@@ -26,7 +26,7 @@ const App = () => {
       //console.log(response.data);
       Setdata(response.data);
       console.log('Data featched Successfully');
-      console.log(data);
+      
     } catch (error) {
       console.log(error);
     }
