@@ -15,6 +15,15 @@ const storetoken = async authtoken => {
   }
 };
 
+const getUser = async () => {
+  const token = await storetoken();
+
+  if (token) {
+    return token;
+  } else {
+    return null;
+  }
+};
 //Reding the data
 
 const gettoken = async () => {
@@ -47,6 +56,7 @@ const removetoken = async () => {
 
 //exporting
 export default {
+  getUser,
   storetoken,
   gettoken,
   removetoken,

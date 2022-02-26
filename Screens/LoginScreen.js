@@ -1,45 +1,30 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomeButton from '../Components/CustomeButton';
 import Custominput from '../Components/Custominput';
 import {COLORS} from '../Config/ColorPallet';
 import {fonststyle} from '../Config/fontstyles';
-import AuthContext from '../Navigation/Context';
+
 import authentication from '../api/authentication';
-import jwtDecode from 'jwt-decode';
-import authStorage from '../auth/storage';
+
+import useAuth from '../auth/useAuth';
 
 export default function LoginScreen({navigation}) {
   const [username, Setusername] = useState();
   const [password, SetPassword] = useState();
 
-  //  console.log(email, password);
-
-  // console.log(username, password, 'from the state');
-
-  const authContext = useContext(AuthContext);
+  //cutome hook
+  const {login} = useAuth();
 
   //on press for Sign in
   const handleOnPress = async (username, password) => {
-    //making call to api
-
     try {
       const result = await authentication.login(username, password);
       const token = result.data;
 
-      //decoding the Token
-
-      const user = jwtDecode(token.accessToken);
-
-      authContext.SetUser(user);
-
-      //Stroing token
-      //error : =>  To be Store as String
-      authStorage.storetoken(token.toString());
-
-      //console.log(user);
+      login(token);
     } catch (error) {
-      // console.log(error, 'Error from login trycatch');
+      console.log(error, 'Error from login trycatch');
     }
   };
 
