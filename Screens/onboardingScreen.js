@@ -1,11 +1,10 @@
-import React, {useCallback, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Dimensions, Settings} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useDerivedValue,
   useSharedValue,
-  event,
 } from 'react-native-reanimated';
 import {PageData} from '../Data/Onboarddata';
 

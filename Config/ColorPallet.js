@@ -8,7 +8,7 @@ export const COLORS = {
   error: '',
   subtext: '#E4E8EE',
   fadewhite: '#BDC1C6',
-  Login_Body: '#D7E9F7', //black
+  Login_Body: '#F0D9FF', //black
   Loginheading: '#000',
   Loginsubtext: '#000',
   textinput: '#1B1B1B',

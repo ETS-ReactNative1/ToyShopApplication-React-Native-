@@ -15,6 +15,7 @@ export default function LoginScreen({navigation}) {
 
   //cutome hook
   const {login} = useAuth();
+  //implemented the logig and Sign up fucntionality
 
   //on press for Sign in
   const handleOnPress = async (username, password) => {
