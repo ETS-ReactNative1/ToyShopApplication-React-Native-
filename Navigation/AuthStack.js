@@ -17,9 +17,10 @@ export default function AuthStack() {
       if (value === null) {
         AsyncStorage.setItem('alreadylaunched', 'true'); //set alredy launched to true
         setfirstloding(true);
-      } else {
-        setfirstloding(false);
       }
+      return () => {
+        setfirstloding(false);
+      };
     }, []);
   });
 

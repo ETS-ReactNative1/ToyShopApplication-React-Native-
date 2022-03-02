@@ -15,10 +15,10 @@ const App = () => {
 
   const [data, Setdata] = useState();
 
-  useEffect(() => {
-    pulldata();
-    //console.log(Constants.systemFonts, 'From expo');
-  }, []);
+  // useEffect(() => {
+  //   pulldata();
+  //   //console.log(Constants.systemFonts, 'From expo');
+  // }, []);
 
   const pulldata = async () => {
     try {
@@ -26,7 +26,6 @@ const App = () => {
       //console.log(response.data);
       Setdata(response.data);
       console.log('Data featched Successfully');
-      
     } catch (error) {
       console.log(error);
     }

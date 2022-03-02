@@ -1,70 +1,74 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Image,
-  Dimensions,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-const WIDTH = Dimensions.get('window').width;
-import {Keyframe} from 'react-native-reanimated';
 
-const size = WIDTH * 0.3;
+const WIDTH = Dimensions.get('window').width;
+import Animated, {BounceInUp, FadeInDown} from 'react-native-reanimated';
+import {fonststyle} from '../Config/fontstyles';
+
+const size = WIDTH * 0.23;
 
 export default function NewLoginScreen() {
   //ketframes animation for the Circle
-  const bubbleanimation = new Keyframe({
-    0: {
-      borderRadius: 0,
-    },
-  });
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.toybgplane}>
-        <View style={styles.toybg}>
+        <Animated.View
+          style={styles.toybg}
+          entering={BounceInUp.duration(2000)}>
           <Image
             source={require('../assets/Images/img12.png')}
             resizeMethod="scale"
             style={{
-              height: 90,
-              width: 90,
+              height: 60,
+              width: 60,
               alignSelf: 'center',
             }}
           />
-        </View>
-        <View style={[styles.toybg, {top: '23%', left: '70%'}]}>
+        </Animated.View>
+        <Animated.View
+          style={[styles.toybg, {top: '23%', left: '70%'}]}
+          entering={BounceInUp.duration(2000).randomDelay(300)}>
           <Image
             source={require('../assets/Images/img5.png')}
             resizeMethod="scale"
             style={{
-              height: 100,
-              width: 100,
+              height: 60,
+              width: 60,
               alignSelf: 'center',
             }}
           />
-        </View>
-        <View style={[styles.toybg, {top: '50%', left: '25%'}]}>
+        </Animated.View>
+        <Animated.View
+          style={[styles.toybg, {top: '50%', left: '25%'}]}
+          entering={BounceInUp.duration(2000).randomDelay(500)}>
           <Image
             source={require('../assets/Images/img13.png')}
             resizeMethod="scale"
             style={{
-              height: 90,
-              width: 90,
+              height: 60,
+              width: 60,
               alignSelf: 'center',
             }}
           />
-        </View>
+        </Animated.View>
       </View>
 
-      <Text>NewLoginScreen</Text>
+      <Animated.Text
+        style={styles.logo}
+        entering={FadeInDown.duration(3000).springify()}>
+        ToyMania
+      </Animated.Text>
+      <View style={styles.txtincontainer}></View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#B8FFF9',
+    flex: 1,
+  },
   imagecontainer: {
     backgroundColor: 'red',
   },
@@ -84,4 +88,13 @@ const styles = StyleSheet.create({
     left: -10,
     top: 10,
   },
+  logo: {
+    ...fonststyle.heading2,
+    fontSize: 33,
+    fontWeight: 'bold',
+    letterSpacing: 5,
+    textAlign: 'center',
+    marginVertical: 15,
+  },
+  txtincontainer: {},
 });
