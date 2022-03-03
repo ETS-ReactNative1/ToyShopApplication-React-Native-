@@ -1,14 +1,39 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 const WIDTH = Dimensions.get('window').width;
 import Animated, {BounceInUp, FadeInDown} from 'react-native-reanimated';
 import {fonststyle} from '../Config/fontstyles';
+import useAuth from '../auth/useAuth';
+import CustomeButton from '../Components/CustomeButton';
+import {COLORS} from '../Config/ColorPallet';
 
+import Custominput from '../Components/Custominput';
 const size = WIDTH * 0.23;
 
-export default function NewLoginScreen() {
+//implemented the logig and Sign up fucntionality
+
+//on press for Sign in
+
+export default function NewLoginScreen({navigation}) {
+  const [username, Setusername] = useState();
+  const [password, SetPassword] = useState();
+
   //ketframes animation for the Circle
+
+  //cutome hook
+  const {login} = useAuth();
+
+  const handleOnPress = async (username, password) => {
+    try {
+      const result = await authentication.login(username, password);
+      const token = result.data;
+
+      login(token);
+    } catch (error) {
+      console.log(error, 'Error from login trycatch');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -59,7 +84,42 @@ export default function NewLoginScreen() {
         entering={FadeInDown.duration(3000).springify()}>
         ToyMania
       </Animated.Text>
-      <View style={styles.txtincontainer}></View>
+
+      <Animated.View
+        style={styles.maincontainer}
+        entering={FadeInDown.duration(3000)}>
+        <Custominput
+          placeholder="Phone,email or username"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={Useremail => Setusername(Useremail)}
+        />
+        <Custominput
+          placeholder="Password"
+          secure={true}
+          onChangeText={Userpass => SetPassword(Userpass)}
+        />
+
+        <Text style={styles.registertxt}>
+          Don't have an account?{' '}
+          <Text
+            style={styles.regitserbold}
+            onPress={() => navigation.navigate('Signup')}>
+            {' '}
+            Register{' '}
+          </Text>{' '}
+        </Text>
+      </Animated.View>
+      <Animated.View
+        style={styles.buttonwrapper}
+        entering={FadeInDown.duration(3000)}>
+        <CustomeButton
+          title="Sign in"
+          onPress={() => handleOnPress(username, password)}
+          extrastyle={{backgroundColor: COLORS.AuthButton}}
+          textstyle={{color: COLORS.secondary}}
+        />
+      </Animated.View>
     </View>
   );
 }
@@ -94,7 +154,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 5,
     textAlign: 'center',
-    marginVertical: 15,
+    marginBottom: 15,
   },
-  txtincontainer: {},
+  registertxt: {
+    ...fonststyle.description,
+    color: COLORS.faintblack,
+    textAlign: 'center',
+    marginTop: '5%',
+    letterSpacing: 0.5,
+  },
+  regitserbold: {
+    fontWeight: 'bold',
+    color: COLORS.black,
+    letterSpacing: 0.5,
+    fontSize: 16,
+  },
+  maincontainer: {
+    marginHorizontal: 15,
+
+    marginTop: '2%',
+    paddingHorizontal: 10,
+  },
+  buttonwrapper: {
+    height: '100%',
+  },
 });
