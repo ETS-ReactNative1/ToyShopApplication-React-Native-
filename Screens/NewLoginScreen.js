@@ -7,6 +7,7 @@ import {fonststyle} from '../Config/fontstyles';
 import useAuth from '../auth/useAuth';
 import CustomeButton from '../Components/CustomeButton';
 import {COLORS} from '../Config/ColorPallet';
+import authentication from '../api/authentication';
 
 import Custominput from '../Components/Custominput';
 const size = WIDTH * 0.23;
@@ -110,9 +111,7 @@ export default function NewLoginScreen({navigation}) {
           </Text>{' '}
         </Text>
       </Animated.View>
-      <Animated.View
-        style={styles.buttonwrapper}
-        entering={FadeInDown.duration(3000)}>
+      <Animated.View style={styles.buttonwrapper}>
         <CustomeButton
           title="Sign in"
           onPress={() => handleOnPress(username, password)}
@@ -126,7 +125,7 @@ export default function NewLoginScreen({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#B8FFF9',
+    backgroundColor: '#F2C9E1',
     flex: 1,
   },
   imagecontainer: {
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
     ...fonststyle.heading2,
     fontSize: 33,
     fontWeight: 'bold',
-    letterSpacing: 5,
+    letterSpacing: 8,
     textAlign: 'center',
     marginBottom: 15,
   },

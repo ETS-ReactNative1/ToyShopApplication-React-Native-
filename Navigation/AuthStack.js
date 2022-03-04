@@ -18,12 +18,13 @@ export default function AuthStack() {
       if (value === null) {
         AsyncStorage.setItem('alreadylaunched', 'true'); //set alredy launched to true
         setfirstloding(true);
-      }
-      return () => {
+      } else {
         setfirstloding(false);
-      };
-    }, []);
-  });
+      }
+    });
+
+    return () => {};
+  }, []);
 
   //Setting up the route name according to the
   //state
