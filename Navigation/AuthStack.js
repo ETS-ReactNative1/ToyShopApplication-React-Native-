@@ -14,16 +14,18 @@ export default function AuthStack() {
 
   useEffect(() => {
     //using asycstorage
-    AsyncStorage.getItem('alreadylaunched').then(value => {
-      if (value === null) {
-        AsyncStorage.setItem('alreadylaunched', 'true'); //set alredy launched to true
-        setfirstloding(true);
-      } else {
-        setfirstloding(false);
-      }
-    });
-
-    return () => {};
+    try {
+      AsyncStorage.getItem('alreadylaunched').then(value => {
+        if (value === null) {
+          AsyncStorage.setItem('alreadylaunched', 'true'); //set alredy launched to true
+          setfirstloding(true);
+        } else {
+          setfirstloding(false);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   //Setting up the route name according to the

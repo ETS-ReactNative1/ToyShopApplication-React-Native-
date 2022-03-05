@@ -30,6 +30,9 @@ export default function Routes() {
 
   useEffect(() => {
     restoretoken();
+    return () => {
+      null;
+    };
   }, []);
 
   return (

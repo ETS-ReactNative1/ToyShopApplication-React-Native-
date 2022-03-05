@@ -7,7 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 //Import Navigators
 
-import {ProfileScreen} from '../Screens';
+import {ProfileScreen, FavScreen, CartScreen} from '../Screens';
 import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
@@ -17,6 +17,8 @@ export default function AppStack({}) {
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Pro" component={ProfileScreen} />
+      <Tab.Screen name="Fav" component={FavScreen} />
+      <Tab.Screen name="Cart" component={CartScreen} />
     </Tab.Navigator>
   );
 }

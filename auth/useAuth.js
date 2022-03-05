@@ -25,3 +25,8 @@ export default useAuth = () => {
 
   return {User, logout, login};
 };
+
+//todo
+//Setup the Four bottom tabs
+//Build the HomeScreen Menu
+//Add animation in home Screen
