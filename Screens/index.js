@@ -5,3 +5,4 @@ export {default as NewLoginScreen} from './NewLoginScreen';
 export {default as Signupscreen} from './SignupScreen';
 export {default as FavScreen} from './FavScreen';
 export {default as CartScreen} from './CartScreen';
+export {default as ProductInfoScreen} from './ProductInfoScreen';

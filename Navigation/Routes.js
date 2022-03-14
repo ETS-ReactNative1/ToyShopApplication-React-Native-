@@ -12,6 +12,9 @@ import Authcontext from '../Navigation/Context';
 
 export default function Routes() {
   //declaring the state variable to persue the curret user
+
+  let isSubscribed = true;
+
   [User, SetUser] = useState();
 
   //Restoring the token
@@ -29,11 +32,12 @@ export default function Routes() {
   };
 
   useEffect(() => {
-    restoretoken();
-    return () => {
-      null;
-    };
-  }, []);
+    if (isSubscribed) {
+      restoretoken();
+    }
+
+    return () => (isSubscribed = false);
+  }, [User]);
 
   return (
     <Authcontext.Provider value={{User, SetUser}}>

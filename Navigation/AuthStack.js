@@ -10,22 +10,28 @@ const Auth = createNativeStackNavigator();
 export default function AuthStack() {
   //implementation of a logic for onboarding screens
 
+  let isSubscribed = true;
+
   const [firstLoding, setfirstloding] = useState(null);
+
+  const isFirstlaunched = async () => {
+    const result = await AsyncStorage.getItem('alreadylaunched');
+    if (result === null) {
+      AsyncStorage.getItem('alreadylaunched', 'true');
+      setfirstloding(true);
+    } else {
+      setfirstloding(false);
+    }
+  };
 
   useEffect(() => {
     //using asycstorage
-    try {
-      AsyncStorage.getItem('alreadylaunched').then(value => {
-        if (value === null) {
-          AsyncStorage.setItem('alreadylaunched', 'true'); //set alredy launched to true
-          setfirstloding(true);
-        } else {
-          setfirstloding(false);
-        }
-      });
-    } catch (error) {
-      console.log(error);
+
+    if (isSubscribed) {
+      isFirstlaunched();
     }
+
+    return () => (isSubscribed = false);
   }, []);
 
   //Setting up the route name according to the
