@@ -11,7 +11,7 @@ import {ProfileScreen, FavScreen, CartScreen} from '../Screens';
 import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
-
+ 
 export default function AppStack({}) {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
