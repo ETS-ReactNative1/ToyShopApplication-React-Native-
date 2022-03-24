@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
-import CustomHeader from '../Components/CustomHeader';
+import React from 'react';
 import Screeen from '../Components/Screeen';
+import CustomHeader from '../Components/CustomHeader';
 
-export default function ProfileScreen() {
+export default function CartScreen() {
   return (
     <Screeen>
       <View style={styles.container}>
-        <CustomHeader screenname="Profile" arrow={true} />
+        <CustomHeader arrow={true} screenname="Cart" />
       </View>
     </Screeen>
   );

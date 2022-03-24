@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
-
-import auth from '@react-native-firebase/auth';
+import React, {useState, useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
+
+import authStorage from '../auth/storage';
 
 //Stacks
 import AuthStack from './AuthStack';
@@ -11,26 +11,39 @@ import AppStack from './AppStack';
 import Authcontext from '../Navigation/Context';
 
 export default function Routes() {
-  const {User, SetUser} = useContext(Authcontext);
+  //declaring the state variable to persue the curret user
 
-  const [intializing, setintializing] = useState(true);
+  let isSubscribed = true;
 
-  const onAuthStateChanged = User => {
-    SetUser(User);
-    if (intializing) setintializing(false);
+  [User, SetUser] = useState();
+
+  //Restoring the token
+  const restoretoken = async () => {
+    const token = await authStorage.gettoken();
+    //  console.log(token, 'token from async');
+
+    if (!token) {
+      //  console.warn('No Token Avail');
+      return;
+    }
+    //decoding the Token
+    SetUser(token);
+    // console.log(User, 'from Async Storage');
   };
 
-  //from react-native-firebase documentation
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber;
-  }, []);
+    if (isSubscribed) {
+      restoretoken();
+    }
 
-  if (intializing) return null;
+    return () => (isSubscribed = false);
+  }, [User]);
 
   return (
-    <NavigationContainer>
-      {User ? <AppStack /> : <AuthStack />}
-    </NavigationContainer>
+    <Authcontext.Provider value={{User, SetUser}}>
+      <NavigationContainer>
+        {User ? <AppStack /> : <AuthStack />}
+      </NavigationContainer>
+    </Authcontext.Provider>
   );
 }

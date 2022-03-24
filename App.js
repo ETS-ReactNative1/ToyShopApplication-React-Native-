@@ -6,13 +6,30 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Provider from './Navigation/index';
+import getitem from './api/getitems';
+
 const App = () => {
-  fetch('https://toyshopapi.herokuapp.com/api/product')
-    .then(response => response.json())
-    .then(data => console.log(data));
-  // .then(data => console.log(data));
+  //Storing user
+
+  const [data, Setdata] = useState();
+
+  // useEffect(() => {
+  //   pulldata();
+  //   //console.log(Constants.systemFonts, 'From expo');
+  // }, []);
+
+  const pulldata = async () => {
+    try {
+      const response = await getitem.gettoysdata();
+      //console.log(response.data);
+      Setdata(response.data);
+      console.log('Data featched Successfully');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return <Provider />;
 };

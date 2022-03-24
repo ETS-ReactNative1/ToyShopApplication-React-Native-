@@ -1,23 +1,28 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
-import AuthContext from '../Navigation/Context';
-export default function HomeScreen() {
-  const {logout} = useContext(AuthContext);
+import CustomHeader from '../Components/CustomHeader';
+import Screeen from '../Components/Screeen';
+import {fonststyle} from '../Config/fontstyles';
 
-  //testing api
-
+export default function HomeScreen({navigation}) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text
-        style={{textAlign: 'center', fontWeight: 'bold', letterSpacing: 10}}>
-        HomeScreen
-      </Text>
-      <Pressable onPress={() => logout()}>
-        <Text style={{fontWeight: 'bold', fontSize: 25, marginVertical: 15}}>
-          Press me for LogOut
-        </Text>
-      </Pressable>
-    </View>
+    <Screeen>
+      <View style={styles.container}>
+        <CustomHeader />
+      </View>
+    </Screeen>
   );
 }
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+{
+  /* <Pressable onPress={() => navigation.navigate('ProductInfo')}>
+<Text style={{fontWeight: 'bold', fontSize: 25, color: 'purple'}}>
+  Move
+</Text>
+</Pressable> */
+}

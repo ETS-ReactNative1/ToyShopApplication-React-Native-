@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen, Onboardingscreen} from '../Screens';
+import {HomeScreen, ProductInfoScreen} from '../Screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -9,6 +9,7 @@ export default function HomeStack({}) {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ProductInfo" component={ProductInfoScreen} />
     </Stack.Navigator>
   );
 }
