@@ -5,16 +5,10 @@ import CustomHeader from '../Components/CustomHeader';
 import Screeen from '../Components/Screeen';
 
 export default function ProfileScreen() {
-  [arrow, Setarrow] = useState(null);
-
-  useEffect(() => {
-    Setarrow(true);
-  }, []);
-
   return (
     <Screeen>
       <View style={styles.container}>
-        <CustomHeader screenname="Profile" arrow={arrow} />
+        <CustomHeader screenname="Profile" arrow={true} />
       </View>
     </Screeen>
   );

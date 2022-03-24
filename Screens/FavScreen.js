@@ -7,7 +7,7 @@ export default function FavScreen() {
   return (
     <Screeen>
       <View style={styles.container}>
-        <CustomHeader />
+        <CustomHeader arrow={true} screenname="favorites" />
       </View>
     </Screeen>
   );

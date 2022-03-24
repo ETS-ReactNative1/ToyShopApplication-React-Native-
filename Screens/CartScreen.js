@@ -7,7 +7,7 @@ export default function CartScreen() {
   return (
     <Screeen>
       <View style={styles.container}>
-        <CustomHeader />
+        <CustomHeader arrow={true} screenname="Cart" />
       </View>
     </Screeen>
   );
